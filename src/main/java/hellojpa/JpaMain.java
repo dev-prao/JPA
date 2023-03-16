@@ -1,5 +1,7 @@
 package hellojpa;
 
+import com.sun.org.apache.bcel.internal.generic.ILOAD;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -10,24 +12,24 @@ public class JpaMain {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
 
-        EntityManager em = emf.createEntityManager();
+        EntityManager        em = emf.createEntityManager();
 
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
-        try{
-//            Member findMember = em.find(Member.class, 1L);
-            List<Member> result = em.createQuery("select m from Member as m",Member.class)
-                    .setFirstResult(5)
-                    .setMaxResults(8)
-                    .getResultList();
+        try {
 
-            for (Member member : result) {
-                System.out.println("member.name = " + member.getName());
-            }
+            // 영속
+            Member member = em.find(Member.class, 150L);
+            member.setName("AAAAA");
 
-            tx.commit();
-        } catch (Exception e) {
+            em.clear();
+
+            Member member2 = em.find(Member.class, 150L);
+
+            System.out.println("===========================");
+            tx.commit(); // commit한 시점에 영속성 컨텍스트에서 DB로 날아감
+        } catch(Exception e) {
             tx.rollback();
         } finally {
             em.close();
@@ -36,3 +38,4 @@ public class JpaMain {
         emf.close();
     }
 }
+

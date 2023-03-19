@@ -1,7 +1,5 @@
 package hellojpa;
 
-import com.sun.org.apache.bcel.internal.generic.ILOAD;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;

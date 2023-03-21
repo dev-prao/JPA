@@ -26,7 +26,7 @@ public class JpaMain {
             Member member3 = new Member();
             member3.setUsername("C");
 
-            System.out.println("===========");
+            System.out.println("==========");
 
             // DB SEQ = 1       |   1
             // DB SEQ = 51      |   2
@@ -39,7 +39,7 @@ public class JpaMain {
             System.out.println("member1 = " + member1.getId());
             System.out.println("member2 = " + member2.getId());
             System.out.println("member3 = " + member3.getId());
-            System.out.println("===========");
+            System.out.println("==========");
 
             tx.commit(); // commit한 시점에 영속성 컨텍스트에서 DB로 날아감
         } catch(Exception e) {
